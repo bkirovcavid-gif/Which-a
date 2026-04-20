@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Which | Süni İntellekt Kataloqu</title>
+    <title>AI-Which | Bütün AI Alətləri</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #0f172a; color: white; font-family: sans-serif; }
-        .ai-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; transition: 0.3s; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
-        .ai-card:hover { border-color: #38bdf8; transform: translateY(-5px); shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.2); }
+        .ai-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 20px; transition: 0.3s; }
+        .ai-card:hover { border-color: #38bdf8; transform: translateY(-5px); }
     </style>
 </head>
 <body>
-    <header class="p-8 text-center border-b border-slate-800 bg-slate-900/50 sticky top-0 z-10 backdrop-blur-md">
-        <h1 class="text-4xl font-extrabold text-sky-400 tracking-tight">AI-Which</h1>
+    <header class="p-8 text-center border-b border-slate-800">
+        <h1 class="text-4xl font-extrabold text-sky-400">AI-Which</h1>
         <p class="text-slate-400 mt-2 text-lg">Dünyanın ən yaxşı AI alətləri bir yerdə.</p>
         <div class="mt-6 max-w-md mx-auto">
-            <input type="text" id="searchInput" placeholder="AI aləti və ya kateqoriya axtar..." 
-            class="w-full p-4 rounded-xl bg-slate-800 border border-slate-700 text-white focus:ring-2 focus:ring-sky-500 outline-none shadow-lg transition-all">
+            <input type="text" id="searchInput" placeholder="AI aləti axtar (məs: logo, video...)" 
+            class="w-full p-4 rounded-xl bg-slate-800 border border-slate-700 text-white focus:ring-2 focus:ring-sky-500 outline-none shadow-lg">
         </div>
     </header>
 
@@ -25,17 +25,13 @@
         </main>
 
     <script>
+        // Məlumat Siyahısı (Bura 250+ əlavə edəcəyik)
         const aiTools = [
             { name: "ChatGPT", cat: "Chatbot", desc: "Mətn yazmaq və sual-cavab üçün ən populyar AI.", link: "https://chatgpt.com" },
-            { name: "Midjourney", cat: "Image", desc: "Mətndən yüksək keyfiyyətli şəkillər yaradan AI.", link: "https://midjourney.com" },
+            { name: "Midjourney", cat: "Image", desc: "Yüksək keyfiyyətli şəkillər yaradan AI.", link: "https://midjourney.com" },
             { name: "Sora", cat: "Video", desc: "Mətndən möhtəşəm videolar hazırlayan sistem.", link: "https://openai.com/sora" },
             { name: "DeepSeek", cat: "Chatbot", desc: "Güclü kod yazma və məntiq qabiliyyəti olan pulsuz AI.", link: "https://deepseek.com" },
-            { name: "ElevenLabs", cat: "Audio", desc: "Realist səs klonlama və mətn oxuma aləti.", link: "https://elevenlabs.io" },
-            { name: "Claude", cat: "Chatbot", desc: "Analitik düşünmə qabiliyyəti yüksək AI yardımçı.", link: "https://claude.ai" },
-            { name: "Gamma", cat: "Presentation", desc: "Saniyələr içində peşəkar təqdimatlar hazırlayır.", link: "https://gamma.app" },
-            { name: "Leonardo.ai", cat: "Image", desc: "Oyun və incəsənət üçün mükəmməl vizuallar yaradır.", link: "https://leonardo.ai" },
-            { name: "Runway", cat: "Video", desc: "Videoları redaktə edən və sıfırdan yaradan AI.", link: "https://runwayml.com" },
-            { name: "Perplexity", cat: "Search", desc: "Mənbə göstərərək suallarınızı cavablayan axtarış motoru.", link: "https://perplexity.ai" }
+            { name: "ElevenLabs", cat: "Audio", desc: "Realist səs klonlama və mətn oxuma aləti.", link: "https://elevenlabs.io" }
         ];
 
         const container = document.getElementById('aiContainer');
@@ -43,17 +39,17 @@
 
         function renderTools(list) {
             if(list.length === 0) {
-                container.innerHTML = '<p class="col-span-full text-center text-slate-500 mt-10">Heç bir alət tapılmadı...</p>';
+                container.innerHTML = '<p class="col-span-full text-center text-slate-500">Heç nə tapılmadı...</p>';
                 return;
             }
             container.innerHTML = list.map(tool => `
-                <div class="ai-card">
+                <div class="ai-card flex flex-col justify-between h-full">
                     <div>
-                        <span class="text-[10px] font-bold bg-sky-900/50 text-sky-300 px-2 py-1 rounded uppercase tracking-wider border border-sky-800/50">${tool.cat}</span>
-                        <h3 class="text-xl font-bold mt-3 text-white">${tool.name}</h3>
-                        <p class="text-slate-400 text-sm mt-2 leading-relaxed italic border-l-2 border-slate-700 pl-3">${tool.desc}</p>
+                        <span class="text-[10px] font-bold bg-sky-900 text-sky-300 px-2 py-1 rounded uppercase">${tool.cat}</span>
+                        <h3 class="text-xl font-bold mt-2 text-white">${tool.name}</h3>
+                        <p class="text-slate-400 text-sm mt-2 leading-relaxed">${tool.desc}</p>
                     </div>
-                    <a href="${tool.link}" target="_blank" class="inline-block mt-6 text-center bg-sky-600 hover:bg-sky-500 text-white py-2.5 rounded-lg font-semibold transition-colors shadow-md">Sayta keçid →</a>
+                    <a href="${tool.link}" target="_blank" class="inline-block mt-4 text-center bg-sky-600 hover:bg-sky-500 text-white py-2 rounded-lg font-medium transition">Sayta keçid →</a>
                 </div>
             `).join('');
         }
@@ -71,4 +67,6 @@
         renderTools(aiTools);
     </script>
 </body>
+</html>
+
 
